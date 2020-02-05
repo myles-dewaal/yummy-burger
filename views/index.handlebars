@@ -1,38 +1,25 @@
-<div class="container">
-
-    <div class="jumbotron">
-        <h1>Order Your Burger </h1>
-        <p>Burger Orders for Pickup.</p>
+    <div class="jumbotron text-center">
+        <img src="../public/assets/images/burgerpic2.jpg" alt="burger" />
+        <h1>Burger Tracker</h1>
+	    <p class="description">(Keep track of all the different types of burgers you've tried)</p>
+	    <p class="instructions">Use the button below to create a burger you haven't tried, mark it off to save it as eaten.</p>
         <br>
-        <h2>Select a Burger or Sandwich</h2>
-        <panel>
             <form class="create-form">
-                <div class="form-group">
-                    <label for="newburger">Order Fresh Burger</label>
-                    {{!-- <input type="text" id="newburger" name="burger"> --}}
-                    <select data-placeholder="" id="newburger" name="burger">
-                        <option value="Nothing Selected" selected>Please Select a Sandwich</option>
-                        <option value="Hamburger">Hamburger</option>
-                        <option value="CheeseBurger">CheeseBurger</option>
-                        <option value="DoubleBfChz">Double Up (double meat and cheese)</option>
-                        <option value="VeggieBurger">Veggie Burger</option>
-                        <option value="PulledPork">Pulled Pork Sandwich</option>
-                        <option value="ChichenClub">Chicken Club Sandwich</option>
-                        <option value="SteaknChz">Steak and Cheese Sandwich</option>
-                    </select>
-
-                    <button type="submit" class="btn btn-success" id="addburger">
-                        <span class="fa fa-thumbs-up"></span>
+                <div class="form">
+                    <label for="newburger">Enter Burger Name</label>
+                    <input type="text" id="newburger" name="burger">
+                    <button type="submit-btn" id="addburger">
+                        Create Burger!
                     </button>
                 </div>
             </form>
-        </panel>
     </div>
+    <div class="container">
     <div class="row">
         <div class="col-sm-6">
             <div class="panel panel-default">
-                <div class="panel-heading" id="leftside"><strong>Order Your Burger</strong>
-                    <p>Send order to cashier when ready for pick up</p>
+                <div class="panel-heading" id="leftside"><strong>Burgers Not Yet Tried</strong>
+                    <p>Use the "Create Burger" button to add to this list.</p>
                 </div>
                 <div class="panel-body">
 
@@ -40,9 +27,9 @@
                         {{#each burgers}}
                         {{#unless devoured}}
 
-                        <span><strong> {{this.id}} - {{this.burger_name}}</strong></span>
-                        <button type="button" class="eatburger btn btn-warning" id="eatbutton" data-id="{{this.id}}"
-                            data-newDevoured="{{devour}}"><span class="fa fa-usd"></span></button>
+                        <span>{{this.burger_name}} -</span>
+                        <button type="button" class="eatburger btn btn-light" id="eatbutton" data-id="{{this.id}}"
+                            data-newDevoured="{{devour}}">Eat Me!</button>
                         <hr>
                         {{/unless}}
                         {{/each}}
@@ -53,16 +40,16 @@
         </div>
         <div class="col-sm-6">
             <div class="panel panel-default">
-                <div class="panel-heading" id="rightside"><strong>Burger is Ready for Pick Up</strong>
-                    <p>Remove order from pick up when delivered</p>
+                <div class="panel-heading" id="rightside"><strong>Burgers Eaten</strong>
+                    <p>You can delete a burger if you accidentally marked it as eaten.</p>
                 </div>
                 <div class="panel-body">
                     <ul>
                         {{#each burgers}}
                         {{#if devoured}}
-                        <span><strong> {{this.id}} - {{this.burger_name}}</strong></span>
+                        <span>{{this.burger_name}} -</span>
                         <button type="button" class="trashburger btn btn-danger" id="trashbutton" data-id="{{this.id}}"
-                            data-newDevoured="{{devour}}"><span class="fa fa-trash"></span></button>
+                            data-newDevoured="{{devour}}">DELETE</button>
                         <hr>
                         {{/if}}
                         {{/each}}
@@ -73,8 +60,5 @@
                 </div>
             </div>
         </div>
-
     </div>
-    <!--endrow -->
-</div>
-<!--endcontainer -->
+    </div>
